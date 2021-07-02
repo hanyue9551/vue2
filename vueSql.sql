@@ -60,22 +60,3 @@ BEGIN;
 INSERT INTO `userLogin` VALUES (1, 'admin', 'Z+DjxuBRxX1od+5xqc6Lbe61DTpSoTMKb1lNMHTCkxU=', 1);
 INSERT INTO `userLogin` VALUES (2, 'han', 'Z+DjxuBRxX1od+5xqc6Lbe61DTpSoTMKb1lNMHTCkxU=', 2);
 COMMIT;
-
--- ----------------------------
--- Procedure structure for test_insert1
--- ----------------------------
-DROP PROCEDURE IF EXISTS `test_insert1`;
-delimiter ;;
-CREATE PROCEDURE `vueSql`.`test_insert1`()
-BEGIN 
-DECLARE i INT DEFAULT 1;
-WHILE i<101 DO 
-INSERT INTO `userList`(name, age, address) VALUES (CONCAT('name',i), I, CONCAT('global',i)); 
-SET i=i+1; 
-END WHILE ; 
-COMMIT;
-END
-;;
-delimiter ;
-
-SET FOREIGN_KEY_CHECKS = 1;
