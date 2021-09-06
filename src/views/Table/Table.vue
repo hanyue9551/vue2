@@ -4,6 +4,7 @@
       <router-link to="/tableAdd">
         <a-button type="primary">{{ $t("global.add") }}</a-button>
       </router-link>
+      <select-show-search :list="dataSource" :value="selectValue" @change="changeHandle" ref="selectShowSearch"></select-show-search>
     </div>
     <a-table :columns="columns" :data-source="dataSource" bordered rowKey="id">
       <template
@@ -26,12 +27,12 @@
       <template slot="operation" slot-scope="text, record">
         <div class="editable-row-operations">
           <span v-if="record.editable">
-            <a @click="() => save(record.id)">Save</a>
+            <a @click="() => save(record.id)">{{ $t("global.save") }}</a>
             <a-popconfirm
               title="Sure to cancel?"
               @confirm="() => cancel(record.id)"
             >
-              <a>Cancel</a>
+              <a>{{ $t("global.delete") }}</a>
             </a-popconfirm>
           </span>
           <span v-else>
@@ -39,12 +40,12 @@
               >{{ $t("global.edit") }}</a
             >
             <a @click="() => delate(record.id)">{{ $t("global.delete") }}</a>
-            <a @click="() => showDetail(record.id)">{{ $t("global.detail") }}</a>
+            <a @click="() => showDetail(record)">{{ $t("global.detail") }}</a>
           </span>
         </div>
       </template>
     </a-table>
-    <TableDetail ref="showDrawer" :id="detailId"/>
+    <TableDetail ref="showDrawer" :record="record"/>
   </div>
 </template>
 <script>
@@ -74,13 +75,15 @@ const columns = [
   },
 ];
 
+import SelectShowSearch from '../common/SelectShowSearch.vue';
 import listService from "@/api/listService.js";
 import { createNamespacedHelpers } from "vuex";
 const { mapActions } = createNamespacedHelpers("table");
 import TableDetail from './TableDetail'
 export default {
   components: {
-    TableDetail
+    TableDetail,
+    SelectShowSearch
   },
   data() {
     return {
@@ -88,7 +91,8 @@ export default {
       cacheData: [],
       columns,
       editingKey: "",
-      detailId: Number
+      record: Object,
+      selectValue: null
     };
   },
   created() {
@@ -99,6 +103,7 @@ export default {
     async update() {
       let res = await this.getTable();
       this.dataSource = res.data;
+      this.selectValue = res.data[0].id;
       this.cacheData = res.data.map((item) => ({ ...item }));
     },
     handleChange(value, key, column) {
@@ -165,9 +170,13 @@ export default {
         this.dataSource = newData;
       }
     },
-    showDetail(id) {
-      this.detailId = id
+    showDetail(record) {
+      this.record = record
       this.$refs.showDrawer.showDrawer();
+    },
+    changeHandle(val) {
+      this.selectValue = val
+      // 然后刷新表格
     }
   },
 };

@@ -8,9 +8,10 @@
       :after-visible-change="afterVisibleChange"
       @close="onClose"
     >
-      <p>{{id}}</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <p>ID: {{record.id}}</p>
+      <p>{{ $t("people.name") }}: {{record.name}}</p>
+      <p>{{ $t("people.age") }}: {{record.age}}</p>
+      <p>{{ $t("people.address") }}: {{record.address}}</p>
     </a-drawer>
   </div>
 </template>
@@ -21,10 +22,10 @@ export default {
       visible: false
     };
   },
-  props: ['id'],
+  props: ['record'],
   methods: {
     afterVisibleChange(val) {
-      console.log('visible', val);
+      // console.log('visible', val);
     },
     showDrawer() {
       this.visible = true;

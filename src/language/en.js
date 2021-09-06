@@ -5,10 +5,16 @@ export default {
     save: 'Save',
     edit: 'Edit',
     delete: 'Delete',
-    detail: 'Detail'
+    detail: 'Detail',
+    return: 'Return'
   },
   menu: {
     table: 'Table',
     list: 'List'
+  },
+  people: {
+    name: 'Name',
+    age: 'Age',
+    address: 'Address'
   }
 }

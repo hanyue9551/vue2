@@ -9,6 +9,7 @@ import store from './store'
 import VueI18n from 'vue-i18n'
 import zh from './language/zh'
 import en from './language/en'
+import './css/base.less'
 import { getCookie } from '@/common/utils'
 
 Vue.config.productionTip = false

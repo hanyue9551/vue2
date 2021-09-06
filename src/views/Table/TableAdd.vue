@@ -42,7 +42,7 @@
         {{ $t("global.save") }}
       </a-button>
       <a-button @click="reBack">
-        返回
+        {{ $t("global.return") }}
       </a-button>
     </a-form-item>
   </a-form>
