@@ -16,9 +16,9 @@
           <a-icon type="desktop" />
           <span>{{ $t("menu.list") }}</span>
         </a-menu-item>
-        <a-sub-menu key="sub1">
-          <span slot="title"><a-icon type="user" /><span>不可点1</span></span>
-          <a-menu-item key="3"> Tom </a-menu-item>
+        <a-sub-menu key="二级菜单">
+          <span slot="title"><a-icon type="user" /><span>二级菜单</span></span>
+          <a-menu-item key="shopping"> 购物车 </a-menu-item>
           <a-menu-item key="4"> Bill </a-menu-item>
           <a-menu-item key="5"> Alex </a-menu-item>
         </a-sub-menu>

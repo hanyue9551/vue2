@@ -26,10 +26,14 @@ export default [
       name: 'List',
       meta: { permission: ['two'] },
       component: () => import('../views/List/List.vue'),
-    }
+    },
+    {
+      path: '/shopping',
+      name: 'Shopping',
+      component: () => import('../views/Shopping/Shopping.vue'),
+    },
     ]
   },
-
   {
     path: '/404',
     component: NotFound
